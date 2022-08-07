@@ -46,12 +46,14 @@ const refs = {
   textarea: document.querySelector('.textarea'),
 };
 
-refs.form.addEventListener('input', onFormSubmit);
-refs.textarea.addEventListener('submit', onTextareaSubmit);
+refs.form.addEventListener('submit', onFormSubmit);
+refs.textarea.addEventListener('input', onTextareaInput);
+// refs.textarea.addEventListener('input', onTextareaInput);
 
 function onFormSubmit(e) {}
 
-function onTextareaSubmit(e) {
-  const value = e.currentTarget.value;
-  console.log(value);
+function onTextareaInput(e) {
+  const massage = e.currentTarget.value;
+  // console.log(value);
+  localStorage.setItem('feedback-form-state', massage);
 }
