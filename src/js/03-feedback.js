@@ -40,6 +40,7 @@
 //     });
 //   }
 // })();
+import throttle from 'lodash.throttle';
 
 const refs = {
   form: document.querySelector('.feedback-form'),
@@ -47,13 +48,25 @@ const refs = {
 };
 
 refs.form.addEventListener('submit', onFormSubmit);
-refs.textarea.addEventListener('input', onTextareaInput);
-// refs.textarea.addEventListener('input', onTextareaInput);
+refs.textarea.addEventListener('input', throttle(onTextareaInput, 500));
 
-function onFormSubmit(e) {}
+populateTextarea();
+
+function onFormSubmit(e) {
+  e.preventDefault();
+
+  console.log('Отправляем форму');
+
+  e.currentTarget.reset();
+}
 
 function onTextareaInput(e) {
   const massage = e.currentTarget.value;
-  // console.log(value);
+  // console.log(massage);
   localStorage.setItem('feedback-form-state', massage);
+}
+
+function populateTextarea() {
+  const savedMessage = localStorage.getItem('feedback-form-state;');
+  console.log(savedMessage);
 }
