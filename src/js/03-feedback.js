@@ -10,7 +10,7 @@ const formData = {};
 form.addEventListener('input', throttle(onTextareaInput, 1000));
 form.addEventListener('submit', onFormSubmit);
 
-populateTextarea();
+updateDataLocal();
 
 function onTextareaInput(e) {
   formData[e.target.name] = e.target.value;
@@ -34,7 +34,7 @@ function onFormSubmit(e) {
   }
 }
 
-function populateTextarea() {
+function updateDataLocal() {
   let data = JSON.parse(localStorage.getItem(STORAGE_KEY));
 
   if (data) {
