@@ -21,6 +21,7 @@ function onTextareaInput(e) {
 
 function onFormSubmit(e) {
   e.preventDefault();
+
   const email = document.querySelector('input');
   const message = document.querySelector('textarea');
   if (email.value === '' || message.value === '') {
@@ -28,21 +29,19 @@ function onFormSubmit(e) {
   } else {
     // e.currentTarget.reset();
     form.reset();
-
-  // console.log('Отправляем форму');
-  
-  localStorage.removeItem(STORAGE_KEY);
-  console.log(formData);
+    localStorage.removeItem(STORAGE_KEY);
+    console.log(formData);
+  }
 }
 
 function populateTextarea() {
-  let data = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY));
+  let data = JSON.parse(localStorage.getItem(STORAGE_KEY));
 
   if (data) {
-    Object.entries(saveData).forEach(([key, value]) => {
+    Object.entries(data).forEach(([key, value]) => {
       formData[key] = value;
       form.elements[key].value = value;
-      console.log(saveData);
+      console.log(data);
     });
   }
 }
@@ -58,4 +57,3 @@ function populateTextarea() {
 //   if (savedMessage) {
 //     refs.textarea.value = savedMessage;
 //   }
-// }
