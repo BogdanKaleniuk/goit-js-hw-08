@@ -14,7 +14,7 @@ function timeHandler(currentTime) {
   if (currentTime) {
     parsedCurrentTime = JSON.parse(currentTime);
   } else {
-    parsedCurrentTime = 0;a
+    parsedCurrentTime = 0;
   }
 }
 timeHandler(currentTime);
